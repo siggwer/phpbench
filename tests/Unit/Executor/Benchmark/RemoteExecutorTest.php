@@ -17,7 +17,7 @@ use PhpBench\Benchmark\Metadata\SubjectMetadata;
 use PhpBench\Benchmark\Remote\Launcher;
 use PhpBench\Executor\BenchmarkExecutorInterface;
 use PhpBench\Executor\Benchmark\LocalExecutor;
-use PhpBench\Executor\Benchmark\MicrotimeExecutor;
+use PhpBench\Executor\Benchmark\RemoteExecutor;
 use PhpBench\Executor\ExecutionResults;
 use PhpBench\Model\Benchmark;
 use PhpBench\Model\Iteration;
@@ -28,7 +28,7 @@ use PhpBench\Tests\PhpBenchTestCase;
 use RuntimeException;
 use PhpBench\Tests\Unit\Executor\Benchmark\AbstractExecutorTestCase;
 
-class MicrotimeExecutorTest extends AbstractExecutorTestCase
+class RemoteExecutorTest extends AbstractExecutorTestCase
 {
     /**
      * It should prevent output from the benchmarking class.
@@ -53,7 +53,7 @@ class MicrotimeExecutorTest extends AbstractExecutorTestCase
 
     protected function createExecutor(): BenchmarkExecutorInterface
     {
-        return new MicrotimeExecutor(new Launcher(null));
+        return new RemoteExecutor(new Launcher(null));
     }
 
     protected function assertExecute(ExecutionResults $results): void

@@ -13,8 +13,10 @@
 namespace PhpBench\Executor\Benchmark;
 
 use PhpBench\Benchmark\Metadata\SubjectMetadata;
+use PhpBench\Benchmark\Remote\Exception\ScriptErrorException;
 use PhpBench\Benchmark\Remote\Launcher;
 use PhpBench\Executor\BenchmarkExecutorInterface;
+use PhpBench\Executor\Exception\ExecutionError;
 use PhpBench\Executor\ExecutionResults;
 use PhpBench\Model\Iteration;
 use PhpBench\Model\Result\MemoryResult;
@@ -56,7 +58,11 @@ class TemplateExecutor implements BenchmarkExecutorInterface
             $config[self::OPTION_PHP_CONFIG] ?? []
         ));
 
-        $result = $payload->launch();
+        try {
+            $result = $payload->launch();
+        } catch (ScriptErrorException $error) {
+            throw new ExecutionError($error->getMessage(), 0, $error);
+        }
 
         if (isset($result['buffer']) && $result['buffer']) {
             throw new \RuntimeException(sprintf(
