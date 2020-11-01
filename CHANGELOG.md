@@ -13,11 +13,14 @@ Backward compatiblity breaks:
 - Extensions use the Symfony `OptionsResolver` instead of provding an array of
   default values (which is in line with how other parts of PHPBench are
   working).
+- Renamed the `microtime` executor to `remote`.
 
 Features:
 
 - Introduced `remote_script_remove` and `remote_script_path` options to assist
   in debugging.
+- Added `local` executor - execute benchmarks with in the same process as
+  PHPBench.
 
 1.0.0-alpha-2
 -------------
