@@ -12,21 +12,13 @@
 
 namespace PhpBench\Tests\Unit\Executor\Benchmark;
 
-use PhpBench\Benchmark\Metadata\BenchmarkMetadata;
-use PhpBench\Benchmark\Metadata\SubjectMetadata;
 use PhpBench\Benchmark\Remote\Launcher;
-use PhpBench\Executor\BenchmarkExecutorInterface;
-use PhpBench\Executor\Benchmark\LocalExecutor;
 use PhpBench\Executor\Benchmark\RemoteExecutor;
+use PhpBench\Executor\BenchmarkExecutorInterface;
 use PhpBench\Executor\ExecutionResults;
-use PhpBench\Model\Benchmark;
-use PhpBench\Model\Iteration;
 use PhpBench\Model\ParameterSet;
-use PhpBench\Model\Variant;
 use PhpBench\Registry\Config;
-use PhpBench\Tests\PhpBenchTestCase;
 use RuntimeException;
-use PhpBench\Tests\Unit\Executor\Benchmark\AbstractExecutorTestCase;
 
 class RemoteExecutorTest extends AbstractExecutorTestCase
 {
